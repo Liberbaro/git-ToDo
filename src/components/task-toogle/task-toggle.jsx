@@ -35,4 +35,3 @@ TaskToggle.propTypes = {
 };
 
 export default TaskToggle;
-
