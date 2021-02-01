@@ -30,6 +30,7 @@ export default class NewTaskForm extends Component {
           className="new-todo"
           type="text"
           placeholder="Input do wish"
+          maxLength="40"
           value={ value }
         />
       </form>

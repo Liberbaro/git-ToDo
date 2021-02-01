@@ -33,9 +33,10 @@ export default class App extends Component {
     });
   };
 
-  saveNewTaskValue = (id, evt) => {
+  saveNewTaskValue = (id, newValue) => {
+    // if (evt.target.className !== 'edit')
     this.changeListToDo(id, (arg, arg2, task) => {
-      task.text = evt.target.value;
+      task.text = newValue;
       task.className = task.done ? 'completed' : '';
     });
   };
@@ -93,7 +94,7 @@ export default class App extends Component {
           countTasksLeft = listToDo.filter(({ done }) => !done).length;
     return (
       <section className="todoapp">
-        <Header addTaskToListToDo={this.addTaskToListToDo} asdas="aa"/>
+        <Header addTaskToListToDo={this.addTaskToListToDo}/>
         <Main
           taskList={listToDo}
           countTasksLeft={countTasksLeft}
