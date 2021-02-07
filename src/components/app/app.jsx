@@ -20,12 +20,12 @@ export default class App extends Component {
     });
   };
 
-  clearCompletedTasks = () => {
-    this.changeListToDo(({ listToDo }) => {
-      const newListToDo = listToDo.filter(({ className }) => className !== 'completed');
-      return { listToDo: newListToDo };
-    });
-  };
+  // clearCompletedTasks = () => {
+  //   this.changeListToDo(({ listToDo }) => {
+  //     const newListToDo = listToDo.filter(({ className }) => className !== 'completed');
+  //     return { listToDo: newListToDo };
+  //   });
+  // };
 
   onEditValue = (id) => {
     this.changeListToDo(({ listToDo }) => {
@@ -60,19 +60,23 @@ export default class App extends Component {
     });
   };
 
-  selectTaskFilter = (label) => {
-    this.changeListToDo((draft) => {
-      draft.listToDo.map((el) => {
-        if (label === 'all') el.display = 'block';
-        else el.display = el.className === label ? 'block' : 'none';
-        return el;
-      });
-      draft.activeFilter = label;
-    });
-  };
+  // selectTaskFilter = (label) => {
+  //   this.changeListToDo((draft) => {
+  //     draft.listToDo.map((el) => {
+  //       if (label === 'all') el.display = 'block';
+  //       else el.display = el.className === label ? 'block' : 'none';
+  //       return el;
+  //     });
+  //     draft.activeFilter = label;
+  //   });
+  // };
 
   changeListToDo = (fn) => {
     this.setState(produce(fn));
+  };
+
+  test = (fn) => {
+    this.changeListToDo(fn);
   };
 
   getTask = (id, arr) => {
@@ -110,9 +114,8 @@ export default class App extends Component {
             onDelTask={this.onDelTask}
           />
           <Footer countTasksLeft={countTasksLeft}
-            selectTaskFilter={this.selectTaskFilter}
-            clearCompletedTasks={this.clearCompletedTasks}
             activeFilter={activeFilter}
+            test={this.test}
           />
         </section>
       </section>
