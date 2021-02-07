@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 export default class EditingTask extends Component {
     static propTypes = {
       saveNewTaskValue: PropTypes.func.isRequired,
-      className: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
     };
 
     // eslint-disable-next-line react/destructuring-assignment
@@ -22,8 +19,8 @@ export default class EditingTask extends Component {
     }
 
     onKeyDownInputFieldHandler= (evt) => {
-      const { id, saveNewTaskValue } = this.props;
-      return evt.keyCode === 13 ? saveNewTaskValue(id, evt.target.value) : null;
+      const { saveNewTaskValue } = this.props;
+      return evt.keyCode === 13 || evt.keyCode === 27 ? saveNewTaskValue(evt.target.value) : null;
     }
 
     onChangeInputFieldHandler=(evt) => {
@@ -31,21 +28,20 @@ export default class EditingTask extends Component {
     }
 
     documentClickHandler =(evt) => {
-      const { id, saveNewTaskValue } = this.props,
+      const { saveNewTaskValue } = this.props,
             { newValue } = this.state;
-      return evt.target.className !== 'edit' ? saveNewTaskValue(id, newValue) : null;
+      return evt.target.className !== 'edit' ? saveNewTaskValue(newValue) : null;
     }
 
     render() {
-      const { className, type, text } = this.props;
+      const { text } = this.props;
       return (
-        <input
-          onChange={(evt) => this.onChangeInputFieldHandler(evt) }
-          onKeyDown={this.onKeyDownInputFieldHandler}
-          defaultValue={text}
-          type={type}
+        <input className="edit"
+          type="text"
           maxLength="40"
-          className={className}/>
+          defaultValue={text}
+          onChange={(evt) => this.onChangeInputFieldHandler(evt) }
+          onKeyDown={this.onKeyDownInputFieldHandler}/>
       );
     }
 }
