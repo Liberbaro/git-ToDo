@@ -7,11 +7,20 @@ export default class NewTaskForm extends Component {
 
   static propTypes = { addTaskToListToDo: PropTypes.func }
 
+  constructor() {
+    super();
+    this.mainInput = React.createRef();
+  }
+
   state = {
     value: '',
     min: '',
     sec: '',
   };
+
+  componentDidMount() {
+    this.mainInput.current.focus();
+  }
 
   onKeyDown = (evt) => {
     if (evt.keyCode === 13) {
@@ -50,6 +59,7 @@ export default class NewTaskForm extends Component {
         onKeyDown={this.onKeyDown}>
         <form className="new-todo-form">
           <input
+            ref={this.mainInput}
             onChange={this.onChangeInput}
             className="new-todo"
             type="text"
