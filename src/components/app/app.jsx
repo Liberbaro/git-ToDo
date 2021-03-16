@@ -13,19 +13,12 @@ export default class App extends Component {
     activeFilter: 'all',
   };
 
-  addTaskToListToDo = (text) => {
+  addTaskToListToDo = (text, min = 0, sec = 0) => {
     this.changeListToDo(({ listToDo }) => {
-      const newTask = this.createNewTask(text);
+      const newTask = this.createNewTask(text, min, sec);
       listToDo.unshift(newTask);
     });
   };
-
-  // clearCompletedTasks = () => {
-  //   this.changeListToDo(({ listToDo }) => {
-  //     const newListToDo = listToDo.filter(({ className }) => className !== 'completed');
-  //     return { listToDo: newListToDo };
-  //   });
-  // };
 
   onEditValue = (id) => {
     this.changeListToDo(({ listToDo }) => {
@@ -60,17 +53,6 @@ export default class App extends Component {
     });
   };
 
-  // selectTaskFilter = (label) => {
-  //   this.changeListToDo((draft) => {
-  //     draft.listToDo.map((el) => {
-  //       if (label === 'all') el.display = 'block';
-  //       else el.display = el.className === label ? 'block' : 'none';
-  //       return el;
-  //     });
-  //     draft.activeFilter = label;
-  //   });
-  // };
-
   changeListToDo = (fn) => {
     this.setState(produce(fn));
   };
@@ -85,10 +67,12 @@ export default class App extends Component {
     return task;
   }
 
-  createNewTask(text) {
+  createNewTask(text, min, sec) {
     const { activeFilter } = this.state;
     return {
       text,
+      min,
+      sec,
       className: '',
       id: this.taskId++,
       done: false,

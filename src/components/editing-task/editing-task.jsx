@@ -38,7 +38,7 @@ export default class EditingTask extends Component {
       return (
         <input className="edit"
           type="text"
-          maxLength="40"
+          maxLength="100"
           defaultValue={text}
           onChange={(evt) => this.onChangeInputFieldHandler(evt) }
           onKeyDown={this.onKeyDownInputFieldHandler}/>

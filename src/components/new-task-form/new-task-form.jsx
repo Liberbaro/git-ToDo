@@ -7,33 +7,67 @@ export default class NewTaskForm extends Component {
 
   static propTypes = { addTaskToListToDo: PropTypes.func }
 
-  state = { value: '' };
-
-  onSubmitFormHandler = (evt) => {
-    evt.preventDefault();
-    const { value } = this.state,
-          { addTaskToListToDo } = this.props;
-    addTaskToListToDo(value);
-    this.setState({ value: '' });
+  state = {
+    value: '',
+    min: '',
+    sec: '',
   };
 
-  onChangeInputHandler = (evt) => {
-    this.setState({ value: evt.target.value });
+  onKeyDown = (evt) => {
+    if (evt.keyCode === 13) {
+      evt.preventDefault();
+      const { value, min, sec } = this.state,
+            { addTaskToListToDo } = this.props;
+      if (value) {
+        addTaskToListToDo(value, min, sec);
+      }
+      this.setState({
+        value: '',
+        min: '',
+        sec: '',
+      });
+    }
   };
+
+  clearValue = (dirtyValue, num, unit) => {
+    let res = dirtyValue.replace(/[^\d]/g, '');
+    if (res > num) res = `${num}`;
+    return unit ? this.setState({ min: res }) : this.setState({ sec: res });
+  };
+
+  onChangeInput = (evt) => {
+    const { value } = evt.target,
+          { className } = evt.target;
+    if (className === 'new-todo') this.setState({ value });
+    if (className === 'new-todo-form__timer min') this.clearValue(value, 60, 'min');
+    if (className === 'new-todo-form__timer sec') this.clearValue(value, 59);
+  }
 
   render() {
-    const { value } = this.state;
+    const { value, sec, min } = this.state;
     return (
-      <form onSubmit={this.onSubmitFormHandler}>
-        <input
-          onChange={this.onChangeInputHandler}
-          className="new-todo"
-          type="text"
-          placeholder="Input do wish"
-          maxLength="40"
-          value={ value }
-        />
-      </form>
+      <div role="presentation"
+        onKeyDown={this.onKeyDown}>
+        <form className="new-todo-form">
+          <input
+            onChange={this.onChangeInput}
+            className="new-todo"
+            type="text"
+            placeholder="Input do wish"
+            maxLength="100"
+            value={ value }
+          />
+          <input
+            onChange={this.onChangeInput}
+            className="new-todo-form__timer min"
+            placeholder="Min" value={min} maxLength="2"/>
+          <input
+            onChange={this.onChangeInput}
+            className="new-todo-form__timer sec"
+            placeholder="Sec" value={sec} maxLength="2"/>
+        </form>
+      </div>
+
     );
   }
 }

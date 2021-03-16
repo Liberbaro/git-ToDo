@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsType from 'prop-types';
+import PropTypes from 'prop-types';
 import TaskFilter from '../task-filter/task-filter';
 import './footer.css';
 
@@ -33,8 +33,8 @@ const Footer = ({ test, countTasksLeft, activeFilter }) => {
 };
 
 Footer.propTypes = {
-  countTasksLeft: PropsType.number.isRequired,
-  activeFilter: PropsType.string.isRequired,
+  countTasksLeft: PropTypes.number.isRequired,
+  activeFilter: PropTypes.string.isRequired,
 };
 
 export default Footer;

@@ -38,5 +38,6 @@ module.exports = {
     indent: ['error', 2, { VariableDeclarator: { var: 2, let: 2, const: 3 } }],
     'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
     'jsx-a11y/control-has-associated-label': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };

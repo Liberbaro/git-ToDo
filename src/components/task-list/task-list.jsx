@@ -6,7 +6,11 @@ import Task from '../task/task';
 
 const TaskList = (props) => {
   const { taskList, saveNewTaskValue, onChangeTaskStatus, onDelTask, onEditValue } = props,
-        taskLists = taskList.map(({ id, text, className, display, timeOfCreate }) => {
+        taskLists = taskList.map(({
+          id, text, className,
+          display, timeOfCreate,
+          min, sec, done,
+        }) => {
           const inputField = <EditingTask text={text}
             saveNewTaskValue={(value) => saveNewTaskValue(id, value)}/>;
           return (
@@ -16,6 +20,9 @@ const TaskList = (props) => {
                 onDelTask={() => onDelTask(id)}
                 onEditValue={() => onEditValue(id)}
                 text={text}
+                min={min}
+                sec={sec}
+                done={done}
                 timeOfCreate={timeOfCreate} />
               {className === 'editing' ? inputField : null}
             </li>
