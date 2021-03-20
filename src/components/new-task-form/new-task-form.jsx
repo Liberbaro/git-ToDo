@@ -1,7 +1,6 @@
-/* eslint-disable */
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import "./new-task-form.css";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import './new-task-form.css';
 
 function NewTaskForm({ createTaskFunc }) {
   const { onKeyDown, onChangeInput, minutes, seconds, value } = createTaskFunc;

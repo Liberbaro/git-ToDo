@@ -1,24 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./task-list.css";
-import EditingTask from "../editing-task/editing-task";
-import Task from "../task/task";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './task-list.css';
+import EditingTask from '../editing-task/editing-task';
+import Task from '../task/task';
 
 const TaskList = ({ taskFunc, taskList }) => {
-  const {
-    saveNewTaskValue,
-    onChangeTaskStatus,
-    onDelTask,
-    onEditValue,
-  } = taskFunc;
+  const { saveNewTaskValue, onChangeTaskStatus, onDelTask, onEditValue } = taskFunc;
   const taskLists = taskList.map((el) => {
     const { id, text, className, display, timeOfCreate, min, sec, done } = el;
-    const inputField = (
-      <EditingTask
-        text={text}
-        saveNewTaskValue={(value) => saveNewTaskValue(id, value)}
-      />
-    );
+    const inputField = <EditingTask text={text} saveNewTaskValue={(value) => saveNewTaskValue(id, value)} />;
     return (
       <li key={id} className={className} style={{ display }}>
         <Task
@@ -32,7 +22,7 @@ const TaskList = ({ taskFunc, taskList }) => {
           done={done}
           timeOfCreate={timeOfCreate}
         />
-        {className === "editing" ? inputField : null}
+        {className === 'editing' ? inputField : null}
       </li>
     );
   });
