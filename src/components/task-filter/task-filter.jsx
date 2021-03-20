@@ -14,6 +14,7 @@ function TaskFilter({ filterFunc, activeFilter }) {
       </li>
     );
   });
+
   return <ul className="filters">{filterButtons}</ul>;
 }
 

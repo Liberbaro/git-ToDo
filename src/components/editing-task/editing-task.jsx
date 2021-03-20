@@ -6,7 +6,8 @@ function EditingTask({ saveNewTaskValue, text }) {
   const { onChangeEditValue, onKeyDownEditValue } = useEditing(saveNewTaskValue, text);
 
   return (
-    <input className="edit"
+    <input
+      className="edit"
       type="text"
       maxLength="100"
       defaultValue={text}

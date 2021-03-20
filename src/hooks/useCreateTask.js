@@ -50,7 +50,7 @@ const useCreateTask = (changeListToDo, activeFilter) => {
     const { className } = evt.target;
     const timer = 'new-todo-form__timer';
     if (className === 'new-todo') setValue(newValue);
-    if (className === `${timer} min`) clearValue(newValue, 60, 'min');
+    if (className === `${timer} min`) clearValue(newValue, 59, 'min');
     if (className === `${timer} sec`) clearValue(newValue, 59);
   };
 

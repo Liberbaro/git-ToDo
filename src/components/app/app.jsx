@@ -25,7 +25,7 @@ const App = () => {
       </header>
       <section className="main">
         <TaskList taskList={listToDo} taskFunc={taskFunc} />
-        <Footer changeListToDo={changeListToDo} filterFunc={filterFunc} activeFilter={activeFilter}/>
+        <Footer changeListToDo={changeListToDo} filterFunc={filterFunc} activeFilter={activeFilter} />
       </section>
     </section>
   );
