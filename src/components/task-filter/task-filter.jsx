@@ -1,17 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './task-filter.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "./task-filter.css";
 
 function TaskFilter({ filterFunc, activeFilter }) {
   const { filtersList, selectTaskFilter } = filterFunc;
   const filterButtons = filtersList.map(({ label, mainClass }) => {
-    const selected = activeFilter === mainClass ? 'selected' : '';
+    const selected = activeFilter === mainClass ? "selected" : "";
     return (
       <li key={label}>
         <button
           onClick={() => selectTaskFilter(mainClass)}
           className={selected}
-          type="button" >
+          type="button"
+        >
           {label}
         </button>
       </li>

@@ -8,7 +8,7 @@ function useTaskEdit(changeListToDo, activeFilter) {
   const onEditValue = (id) => {
     changeListToDo((old) => {
       const task = getTask(id, old);
-      task.className = "editing";
+      task.className = 'editing';
       return old;
     });
   };
@@ -17,7 +17,7 @@ function useTaskEdit(changeListToDo, activeFilter) {
     changeListToDo((old) => {
       const task = getTask(id, old);
       task.text = newValue;
-      task.className = task.done ? "completed" : "";
+      task.className = task.done ? 'completed' : '';
       return old;
     });
   };
@@ -25,10 +25,10 @@ function useTaskEdit(changeListToDo, activeFilter) {
   const onChangeTaskStatus = (id) => {
     changeListToDo((old) => {
       const task = getTask(id, old);
-      task.className = task.done ? "" : "completed";
+      task.className = task.done ? '' : 'completed';
       task.done = !task.done;
-      if (activeFilter === "all") task.display = "block";
-      else task.display = task.className === activeFilter ? "block" : "none";
+      if (activeFilter === 'all') task.display = 'block';
+      else task.display = task.className === activeFilter ? 'block' : 'none';
       return old;
     });
   };
@@ -40,12 +40,8 @@ function useTaskEdit(changeListToDo, activeFilter) {
       return old;
     });
   };
-  const taskFunc = {
-    onEditValue,
-    saveNewTaskValue,
-    onChangeTaskStatus,
-    onDelTask,
-  };
+
+  const taskFunc = { onEditValue, saveNewTaskValue, onChangeTaskStatus, onDelTask };
   return taskFunc;
 }
 

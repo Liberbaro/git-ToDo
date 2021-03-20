@@ -1,17 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useEditing from '../../hooks/useEditing';
+import React from "react";
+import PropTypes from "prop-types";
+import useEditing from "../../hooks/useEditing";
 
 function EditingTask({ saveNewTaskValue, text }) {
   const { onChangeEditValue, onKeyDownEditValue } = useEditing(saveNewTaskValue, text);
 
   return (
-    <input className="edit"
+    <input
+      className="edit"
       type="text"
       maxLength="100"
       defaultValue={text}
-      onChange={(evt) => onChangeEditValue(evt) }
-      onKeyDown={onKeyDownEditValue}/>
+      onChange={(evt) => onChangeEditValue(evt)}
+      onKeyDown={onKeyDownEditValue}
+    />
   );
 }
 
