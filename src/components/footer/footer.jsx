@@ -3,24 +3,23 @@ import PropTypes from 'prop-types';
 import TaskFilter from '../task-filter/task-filter';
 import './footer.css';
 
-// eslint-disable-next-line react/prop-types
-const Footer = ({ test, countTasksLeft, activeFilter }) => {
+// eslint-disable-next-line no-unused-vars,react/prop-types
+const Footer = ({ changeListToDo, filterFunc, activeFilter }) => {
   function clearCompletedTasks() {
-    test(({ listToDo }) => {
-      const newListToDo = listToDo.filter(({ className }) => className !== 'completed');
-      return { listToDo: newListToDo };
+    changeListToDo((old) => {
+      const newListToDo = old.filter(({ className }) => className !== 'completed');
+      return newListToDo
     });
   }
 
   function onKeyDownInfoHandler(evt) {
     if (evt.keyCode === 13) clearCompletedTasks();
-    return '';
   }
 
   return (
     <footer className="footer">
-      <span className="todo-count" > {`${countTasksLeft} items left`} </span>
-      <TaskFilter test={test} activeFilter={activeFilter} />
+      <span className="todo-count" > {`${filterFunc.countTasksLeft} items left`} </span>
+      <TaskFilter filterFunc={filterFunc} activeFilter={activeFilter} />
       <span
         role="presentation"
         onClick={clearCompletedTasks}
@@ -33,8 +32,12 @@ const Footer = ({ test, countTasksLeft, activeFilter }) => {
 };
 
 Footer.propTypes = {
-  countTasksLeft: PropTypes.number.isRequired,
-  activeFilter: PropTypes.string.isRequired,
+  filterFunc: PropTypes.shape({
+    countTasksLeft: PropTypes.number.isRequired,
+    filtersList: PropTypes.arrayOf(PropTypes.object).isRequired,
+    selectTaskFilter: PropTypes.func.isRequired,
+  }).isRequired,
+  changeListToDo: PropTypes.func.isRequired,
 };
 
 export default Footer;
